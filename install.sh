@@ -1,11 +1,12 @@
 #!/bin/bash
+CURRENT=$(dirname $0 && pwd)
 
 if [ -z ${DOCKER_URL} ]; then
   DOCKER_URL="tcp://172.17.42.1:4243"
 fi
 
 if [ -z ${DOCKER_HOST_NGINX_CONF} ]; then
-  DOCKER_HOST_NGINX_CONF="$(dirname $0 && pwd)/_nginx/example_conf.docker.d"
+  DOCKER_HOST_NGINX_CONF=$CURRENT"/_nginx/example_conf.docker.d"
 fi
 
 if [ -z ${DOCKER_CERT_PATH} ]; then
