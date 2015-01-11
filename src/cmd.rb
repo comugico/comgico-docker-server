@@ -8,7 +8,7 @@ Dir::chdir File.dirname(__FILE__)
 iinfo = Struct.new('ImageInfo',     :name, :path, :container)
 cinfo = Struct.new('ContainerInfo', :name, :options)
 
-require '../config_use_images.rb'
+require './config_use_images.rb'
 
 IMAGES_FOR_BUILD.each do |img|
   #if !img.path.nil? && !Docker::Image.exist?(img.name)
