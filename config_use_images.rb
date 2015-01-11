@@ -36,7 +36,7 @@ IMAGES_FOR_BUILD = [
     nil,
     $cinfo.new(
       'owncloud',
-      '-it'
+      '--restart=always -it'
     )
   )
 ]
