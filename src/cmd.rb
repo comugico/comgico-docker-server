@@ -16,10 +16,10 @@ IMAGES_FOR_BUILD = [
     cinfo.new('shipyard-rethinkdb-data', '-it --entrypoint /bin/bash')
   ),
   iinfo.new('shipyard/rethinkdb', nil,
-    cinfo.new('shipyard-rethinkdb', '-it -P --volumes-from shipyard-rethinkdb-data')
+    cinfo.new('shipyard-rethinkdb', '-it --volumes-from shipyard-rethinkdb-data')
   ),
   iinfo.new('shipyard/shipyard', nil,
-    cinfo.new('shipyard', '-it -P --link shipyard-rethinkdb:rethinkdb')
+    cinfo.new('shipyard', '-it --link shipyard-rethinkdb:rethinkdb')
   )
 ]
 
