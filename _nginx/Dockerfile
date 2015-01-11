@@ -14,6 +14,18 @@ RUN yum install -y nginx
 ADD docker.conf /etc/nginx/conf.d/docker.conf
 RUN mkdir --verbose --parents /etc/nginx/conf.docker.d
 
-VOLUME ["/etc/nginx/conf.docker.d"]
+RUN mkdir --verbose --parents /opt/from_dockerfile
+RUN ln -s /opt/from_dockerfile ~/docker
+RUN mkdir --verbose --parents ~/docker/certs
+RUN mkdir --verbose --parents ~/docker/containers
+
+RUN yum install -y docker
+
+ENV DOCKER_HOST tcp://172.17.42.1:4243
+ENV DOCKER_CERT_PATH /opt/from_dockerfile/certs
+ENV DOCKER_TLS_VERIFY 0
+ENV DOCKER_HOST_CERT_PATH /opt/from_dockerfile/certs
+
+VOLUME ["/opt/from_dockerfile/certs", "/etc/nginx/conf.docker.d"]
 EXPOSE 80
 CMD nginx -g "daemon off;"
