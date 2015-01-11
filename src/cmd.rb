@@ -34,7 +34,6 @@ IMAGES_FOR_BUILD.each do |img|
   begin
     container = Docker::Container.get(img.container.name)
     container.start()
-    break
   rescue
     puts cmd = "docker run -d --name #{img.container.name} #{img.container.options} #{img.name}"
     puts `#{cmd}`
