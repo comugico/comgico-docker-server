@@ -9,7 +9,7 @@ if [ -z ${DOCKER_HOST_NGINX_CONF} ]; then
 fi
 
 if [ -z ${DOCKER_CERT_PATH} ]; then
-  DOCKER_CERT_PATH=/dev/null
+  DOCKER_CERT_PATH="/tmp/my-docker-platform_$(/dev/urandom | tr -dc '[:digit:]' | head -c 16)"
 fi
 
 docker build -t s6464/my-docker-platform_installer .
