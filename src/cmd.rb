@@ -5,8 +5,8 @@ Docker.url = ENV["DOCKER_HOST"]
 Dir::chdir File.dirname(__FILE__)
 #puts Docker.info
 
-iinfo = Struct.new('ImageInfo',     :name, :path, :container)
-cinfo = Struct.new('ContainerInfo', :name, :options)
+$iinfo = Struct.new('ImageInfo',     :name, :path, :container)
+$cinfo = Struct.new('ContainerInfo', :name, :options)
 
 require './config_use_images.rb'
 
