@@ -3,7 +3,7 @@ IMAGES_FOR_BUILD = [
     'comugico/comugico-docker-server_nginx',
     './containers/_nginx',
     $cinfo.new(
-      'my-docker-platform_nginx',
+      'comugico-docker-server_nginx',
       '--restart=always -it -p 80:80 -v '+ENV["DOCKER_HOST_NGINX_CONF"]+':/etc/nginx/conf.docker.d'
     )
   ),
