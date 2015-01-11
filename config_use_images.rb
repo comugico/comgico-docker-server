@@ -1,17 +1,42 @@
 IMAGES_FOR_BUILD = [
-  $iinfo.new('comugico/comugico-docker-server_nginx', './containers/_nginx',
-    $cinfo.new('comugico-docker-server_nginx', '--restart=always -it -p 80:80 -v '+ENV["DOCKER_HOST_NGINX_CONF"]+':/etc/nginx/conf.docker.d')
+  $iinfo.new(
+    'comugico/comugico-docker-server_nginx',
+    './containers/_nginx',
+    $cinfo.new(
+      'my-docker-platform_nginx',
+      '--restart=always -it -p 80:80 -v '+ENV["DOCKER_HOST_NGINX_CONF"]+':/etc/nginx/conf.docker.d'
+    )
   ),
-  $iinfo.new('shipyard/rethinkdb', nil,
-    $cinfo.new('shipyard-rethinkdb-data', '--restart=always -it --entrypoint /bin/bash')
+  $iinfo.new(
+    'shipyard/rethinkdb',
+    nil,
+    $cinfo.new(
+      'shipyard-rethinkdb-data',
+      '--restart=always -it --entrypoint /bin/bash'
+    )
   ),
-  $iinfo.new('shipyard/rethinkdb', nil,
-    $cinfo.new('shipyard-rethinkdb', '--restart=always -it --volumes-from shipyard-rethinkdb-data')
+  $iinfo.new(
+    'shipyard/rethinkdb',
+    nil,
+    $cinfo.new(
+      'shipyard-rethinkdb',
+      '--restart=always -it --volumes-from shipyard-rethinkdb-data'
+    )
   ),
-  $iinfo.new('shipyard/shipyard', nil,
-    $cinfo.new('shipyard', '--restart=always -it --link shipyard-rethinkdb:rethinkdb')
+  $iinfo.new(
+    'shipyard/shipyard',
+    nil,
+    $cinfo.new(
+      'shipyard',
+      '--restart=always -it --link shipyard-rethinkdb:rethinkdb'
+    )
   ),
-  $iinfo.new('jchaney/owncloud', nil,
-    $cinfo.new('owncloud', '-it')
+  $iinfo.new(
+    'jchaney/owncloud',
+    nil,
+    $cinfo.new(
+      'owncloud',
+      '-it'
+    )
   )
 ]
