@@ -13,5 +13,7 @@ if [ -z ${DOCKER_CERT_PATH} ]; then
   DOCKER_CERT_PATH="/tmp/my-docker-platform_$(/dev/urandom | tr -dc '[:digit:]' | head -c 16)"
 fi
 
-docker build -t s6464/my-docker-platform_installer .
-docker run -it --rm -e DOCKER_HOST=$DOCKER_URL -e DOCKER_TLS_VERIFY=$DOCKER_TLS_VERIFY -e DOCKER_HOST_CERT_PATH=$DOCKER_CERT_PATH -e DOCKER_HOST_NGINX_CONF="$DOCKER_HOST_NGINX_CONF" -v $DOCKER_CERT_PATH:/opt/from_dockerfile/certs s6464/my-docker-platform_installer
+IMAGE_NAME="s6464/my-docker-platform_installer"
+
+docker build -t $IMAGE_NAME .
+docker run -it --rm -e DOCKER_HOST=$DOCKER_URL -e DOCKER_TLS_VERIFY=$DOCKER_TLS_VERIFY -e DOCKER_HOST_CERT_PATH=$DOCKER_CERT_PATH -e DOCKER_HOST_NGINX_CONF="$DOCKER_HOST_NGINX_CONF" -v $DOCKER_CERT_PATH:/opt/from_dockerfile/certs $IMAGE_NAME
