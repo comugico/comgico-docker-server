@@ -4,7 +4,7 @@ IMAGES_FOR_BUILD = [
     './containers/_nginx',
     $cinfo.new(
       'comugico-docker-server_nginx',
-      '--restart=always -it -p 80:80 -v '+ENV["DOCKER_HOST_NGINX_CONF"]+':/etc/nginx/conf.docker.d'
+      '--restart=always -it -p 80:80 -e DOCKER_HOST=$DOCKER_HOST -e DOCKER_TLS_VERIFY=$DOCKER_TLS_VERIFY -e DOCKER_HOST_CERT_PATH=$DOCKER_HOST_CERT_PATH -v '+ENV["DOCKER_HOST_NGINX_CONF"]+':/etc/nginx/conf.docker.d -v $DOCKER_HOST_CERT_PATH:/opt/from_dockerfile/certs'
     )
   ),
   $iinfo.new(
