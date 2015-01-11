@@ -1,5 +1,5 @@
 #!/bin/bash
-CURRENT=$(dirname $0 && pwd)
+CURRENT=$(dirname $0)
 
 if [ -z ${DOCKER_URL} ]; then
   DOCKER_URL="tcp://172.17.42.1:4243"
