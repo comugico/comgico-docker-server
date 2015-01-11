@@ -30,6 +30,7 @@ RUN bash -l -c "rvm gemset install pry"
 RUN bash -l -c "rvm gemset install docker-api"
 
 ADD src/cmd.rb /opt/from_dockerfile/cmd.rb
+ADD config_use_images.rb /opt/from_dockerfile/config_use_images.rb
 RUN chmod +x ~/docker/cmd.rb
 
 ENV DOCKER_HOST tcp://172.17.42.1:4243
