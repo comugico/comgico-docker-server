@@ -1,11 +1,15 @@
 #!/bin/bash
 
 if [ -z ${DOCKER_URL} ]; then
-  export DOCKER_URL="tcp://172.17.42.1:4243"
+  DOCKER_URL="tcp://172.17.42.1:4243"
 fi
 
 if [ -z ${DOCKER_HOST_NGINX_CONF} ]; then
-  export DOCKER_HOST_NGINX_CONF="$(dirname $0 && pwd)/_nginx/example_conf.docker.d"
+  DOCKER_HOST_NGINX_CONF="$(dirname $0 && pwd)/_nginx/example_conf.docker.d"
+fi
+
+if [ -z ${DOCKER_CERT_PATH} ]; then
+  DOCKER_CERT_PATH=/dev/null
 fi
 
 docker build -t s6464/my-docker-platform_installer .
