@@ -40,6 +40,7 @@ ENV DOCKER_HOST_CERT_PATH /opt/from_dockerfile/certs
 ENV DOCKER_HOST_NGINX_CONF /etc/nginx/conf.d
 
 ADD _nginx /opt/from_dockerfile/containers/_nginx
+ADD _dnsmasq /opt/from_dockerfile/containers/_dnsmasq
 
 VOLUME ["/opt/from_dockerfile/certs", "/opt/from_dockerfile/nginx_conf.d"]
 CMD /bin/bash -l -c "ruby ~/docker/cmd.rb"

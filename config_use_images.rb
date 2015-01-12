@@ -8,6 +8,11 @@ IMAGES_FOR_BUILD = [
     )
   ),
   $iinfo.new(
+    's6464/my-docker-platform_dnsmasq',
+    './containers/_dnsmasq',
+    nil
+  ),
+  $iinfo.new(
     'shipyard/rethinkdb',
     nil,
     $cinfo.new(
