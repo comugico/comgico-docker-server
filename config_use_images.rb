@@ -8,9 +8,12 @@ IMAGES_FOR_BUILD = [
     )
   ),
   $iinfo.new(
-    's6464/my-docker-platform_dnsmasq',
+    'comugico/comugico-docker-server_nginx',
     './containers/_dnsmasq',
-    nil
+    $cinfo.new(
+      'comugico-docker-server_dnsmasq',
+      '--restart=always -it -p 53:53'
+    )
   ),
   $iinfo.new(
     'shipyard/rethinkdb',
