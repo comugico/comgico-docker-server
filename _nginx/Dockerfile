@@ -1,31 +1,27 @@
-FROM centos:centos7
+FROM matsumotory/ngx-mruby
 
-RUN yum update -y
-RUN yum install -y nano nmap tree
-RUN yum install -y curl wget
+RUN apt-get update -y
+RUN apt-get install -y nano nmap tree
+RUN apt-get install -y curl wget
 
 RUN mkdir --verbose --parents /tmp/from_dockerfile
 RUN ln -s /tmp/from_dockerfile ~/tmp
-
-RUN wget "http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm" -O ~/tmp/repo.rpm
-RUN yum localinstall -y ~/tmp/repo.rpm
-RUN yum install -y nginx
-
-ADD docker.conf /etc/nginx/conf.d/docker.conf
-RUN mkdir --verbose --parents /etc/nginx/conf.docker.d
 
 RUN mkdir --verbose --parents /opt/from_dockerfile
 RUN ln -s /opt/from_dockerfile ~/docker
 RUN mkdir --verbose --parents ~/docker/certs
 RUN mkdir --verbose --parents ~/docker/containers
 
-RUN yum install -y docker
+ADD src/nginx.conf /usr/local/nginx/conf/nginx.conf
+RUN mkdir --verbose --parents /usr/local/nginx/conf.docker.d
+
+RUN apt-get install -y docker.io
 
 ENV DOCKER_HOST tcp://172.17.42.1:4243
 ENV DOCKER_CERT_PATH /opt/from_dockerfile/certs
 ENV DOCKER_TLS_VERIFY 0
 ENV DOCKER_HOST_CERT_PATH /opt/from_dockerfile/certs
 
-VOLUME ["/opt/from_dockerfile/certs", "/etc/nginx/conf.docker.d"]
+VOLUME ["/opt/from_dockerfile/certs", "/usr/local/nginx/conf.docker.d"]
 EXPOSE 80
-CMD nginx -g "daemon off;"
+#CMD nginx -g "daemon off;"
