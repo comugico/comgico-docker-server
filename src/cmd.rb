@@ -18,12 +18,14 @@ IMAGES_FOR_BUILD.each do |img|
   end
   
   container = nil
+  if !img.container.nil?
   begin
     container = Docker::Container.get(img.container.name)
     container.start()
   rescue
     puts cmd = "docker run -d --name #{img.container.name} #{img.container.options} #{img.name}"
     puts `#{cmd}`
+  end
   end
 end
 
