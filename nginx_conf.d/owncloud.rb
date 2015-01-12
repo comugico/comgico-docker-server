@@ -1,1 +1,1 @@
-return `docker inspect -format="{{ .NetworkSettings.IPAddress }}" owncloud`
+`docker inspect -format="{{ .NetworkSettings.IPAddress }}" owncloud`
