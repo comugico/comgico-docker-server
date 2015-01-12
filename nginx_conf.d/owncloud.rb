@@ -1,1 +1,1 @@
-`/bin/bash -l -c "docker inspect -format='{{ .NetworkSettings.IPAddress }}' owncloud"`
+`/bin/bash -l -c "docker inspect --format='{{ .NetworkSettings.IPAddress }}' owncloud"`
