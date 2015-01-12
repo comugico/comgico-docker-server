@@ -12,7 +12,7 @@ IMAGES_FOR_BUILD = [
     './containers/_dnsmasq',
     $cinfo.new(
       'comugico-docker-server_dnsmasq',
-      '--restart=always -it -p 53:53 -v /etc/dnsmasq.d:/etc/dnsmasq.d'
+      '--restart=always -it -p 53:53 -v $DNSMASQ_CONFIG_DIR:/etc/dnsmasq.d'
     )
   ),
   $iinfo.new(
