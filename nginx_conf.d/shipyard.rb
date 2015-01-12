@@ -1,1 +1,1 @@
-return `docker inspect -format="{{ .NetworkSettings.IPAddress }}" shipyard`
+`docker inspect -format="{{ .NetworkSettings.IPAddress }}" shipyard`
