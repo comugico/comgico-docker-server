@@ -13,4 +13,4 @@ service firewalld restart
 service docker restart
 
 firewall-cmd --direct --get-all-rules
-firewall-cmd --permanent --list-services --zone=public
+#firewall-cmd --permanent --list-services --zone=public
