@@ -2,10 +2,12 @@
 CURRENT=$(cd $(dirname $0) && pwd)
 firewall-cmd --reload
 
-firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -p all -m --dport 4243 -s 172.17.42.0/24 -j ACCEPT
-firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 2 -p all -m --dport 4243 -i docker0 -j ACCEPT
-firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 3 -p all -m --dport 4243 -j LOG
-firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 4 -p all -m --dport 4243 -j REJECT
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 0 -p all -m --dport 4243 -s 172.17.42.0/24 -j ACCEPT
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -p all -m --dport 4243 -i docker0 -j ACCEPT
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 2 -p all -m --dport 4243 -j LOG
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT   3 -p all -m --dport 4243 -j LOG
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 4 -p all -m --dport 4243 -j REJECT
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT   5 -p all -m --dport 4243 -j REJECT
 
 firewall-cmd --permanent --add-service=http --zone=public
 
