@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <service>
-  <short>my-docker-platform</short>
+  <!--<short>my-docker-platform</short>-->
   <short>comugico-docker-server</short>
   <description>manage docker from nginx+shipyard</description>
   <port protocol="tcp" port="4243"/>
